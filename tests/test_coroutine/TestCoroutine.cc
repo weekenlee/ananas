@@ -1,7 +1,9 @@
 #include <cassert>
 #include <iostream>
 #include <string>
-#include "coroutine/Coroutine.h"
+#include <unistd.h>
+//#include "coroutine/Coroutine.h"
+#include "../../coroutine/Coroutine.h"
 
 
 using std::cerr;
@@ -42,6 +44,7 @@ int main() {
     auto ret = Coroutine::Send(crt);
     cerr << "Main func: got reply message \"" << *std::static_pointer_cast<std::string>(ret).get() << "\""<< endl;
 
+    sleep(10);
     //3. got the final result: 84
     auto finalResult = Coroutine::Send(crt, std::make_shared<std::string>("Please be quick, I am waiting for your result"));
     cerr << "Main func: got the twice of " << input << ", answer is " << *std::static_pointer_cast<int>(finalResult) << endl;
