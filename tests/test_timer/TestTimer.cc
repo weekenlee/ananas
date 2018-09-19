@@ -22,6 +22,7 @@ int main(int ac, char* av[]) {
     });
 
     // shutdown after 7s
+    // =传值 ， &引用
     loop.ScheduleAfter(std::chrono::seconds(7), [&app]() {
         WRN(log) << "Now stop app.";
         app.Exit();
